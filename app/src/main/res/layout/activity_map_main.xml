@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapMainActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        mapbox:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="55dp"
+        android:hint=" Find andress..." />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/autoText"
+        android:layout_toStartOf="@+id/searchAndress"
+        android:padding="5dp"
+        android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+
+    <Button
+        android:id="@+id/searchAndress"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/autoText"
+        android:layout_alignRight="@id/autoText"
+        android:layout_alignTop="@id/autoText"
+        android:text="Find" />
+
+    <!--<Spinner-->
+        <!--android:id="@+id/spinner"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="90dp"></Spinner>-->
+
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/autoText"
+        android:layout_centerHorizontal="true"
+        mapbox:mapbox_cameraTargetLat="10.030570"
+        mapbox:mapbox_cameraTargetLng="105.768801"
+        mapbox:mapbox_cameraZoom="14"
+        mapbox:mapbox_styleUrl="mapbox://styles/thuyankg220296/cjmkgf4cw1cvn2sqlqww2psg7">
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:background="@color/mapboxGrayLight"
+            android:enabled="false"
+            android:padding="5px"
+            android:text="START"
+            android:textColor="@color/mapboxWhite" />
+    </com.mapbox.mapboxsdk.maps.MapView>
+
+    <Button
+        android:id="@+id/openLink"
+        android:background="@drawable/background_button_open3dmodel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="3d Model" />
+
+</RelativeLayout>

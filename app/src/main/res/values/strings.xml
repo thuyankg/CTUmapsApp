@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">CTU maps</string>
+    //module 1
+    <string name="access_token">pk.eyJ1IjoidGh1eWFua2cyMjAyOTYiLCJhIjoiY2ptano4Y3lhMGpheDNwbXNpNW4xdDE0NyJ9.SNtq9Lgnsi63MTCkD5opoA</string>
+    <string name="start_navigating">Start</string>
+    <string name="user_location_permission_explanation">This app needs location permissions in order to show its functionality.</string>
+    <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
+    <string-array name="nameAddress">
+        <item>/A3: Nhà học A3</item>
+        <item>/B1: Nhà học B1</item>
+        <item>/C1: Nhà học C1</item>
+        <item>/C2: Nhà học C2</item>
+        <item>/KH: Khoa Khoa học tự nhiên</item>
+        <item>/KT: Khoa Kinh tế</item>
+        <item>/MT: Khoa Khoa học chính trị</item>
+        <item>/XH: Khoa KHoa học xã hội NV</item>
+        <item>/DB: Khoa Dự bị dân tộc</item>
+        <item>/CN: Khoa Công nghệ</item>
+        <item>/TS hoặc /AQ: Khoa Thủy sản</item>
+        <item>/DI: Khoa Công nghệ thông tin và Truyền thông</item>
+        <item>/NN: Khoa Nông nghiệp</item>
+        <item>/SH: Viện nghiên cứu và phát triển CNSH</item>
+        <item>/MTN: Khoa Môi trường và tài nguyên TN</item>
+        <item>/KL: Khoa Luật</item>
+        <item>/HA: Khoa phát triển nông thôn</item>
+        <item>HL: Trung tâm học liệu</item>
+        <item>/D1: Nhà học D1</item>
+        <item>/D2: Nhà học D2</item>
+        <item>Trung tâm Ngoại ngữ</item>
+        <item>Hội trường Rùa</item>
+        <item>Nhà điều hành</item>
+        <item>Ký túc xá A</item>
+        <item>Ký túc xá B</item>
+        <item>Văn phòng Đoàn trường ĐHCT</item>
+        <item>Nhà thi đấu TDTT</item>
+        <item>Nhà tập luyện TDTT</item>
+        <item>Viện Nghiên cứu và Phát triển ĐBSCL</item>
+    </string-array>
+</resources>
