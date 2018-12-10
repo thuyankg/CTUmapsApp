@@ -1,31 +1,19 @@
-// Copyright 2017 Google Inc. All rights reserved.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-package com.anle.myapp;
 
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
+package com.anle.myapp;
 
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
 import android.util.Log;
 
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
 /**
  * Renderer responsible for rendering the contents of our GLSurfaceView.
  */
 public class MyGLRenderer implements GLSurfaceView.Renderer {
-  private static final String TAG = "PolySample";
+  private static final String TAG = "3Dmodel";
 
   // Camera field of view angle, in degrees (vertical).
   private static final float FOV_Y = 60;
@@ -37,7 +25,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
   private static final float FAR_CLIP = 1000f;
 
   // Model spin speed in degrees per second.
-  private static final float MODEL_ROTATION_SPEED_DPS = 45.0f;
+  private static final float MODEL_ROTATION_SPEED_DPS = 45f;
 
   // Camera position and orientation:
   private static final float EYE_X = 0;
@@ -101,9 +89,11 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     lastFrameTime = System.currentTimeMillis();
     myShader = new MyShader();
   }
-
+  //private Triangle mTriangle;
+  //private float[] mRotationMatrix = new float[16];
   @Override
   public void onDrawFrame(GL10 unused) {
+
     // Update the spin animation.
     long now = System.currentTimeMillis();
     float deltaT = Math.min((now - lastFrameTime) * 0.001f, 0.1f);
@@ -114,20 +104,24 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
 
     // Make a model matrix that rotates the model about the Y axis so it appears to spin.
-    Matrix.setRotateM(modelMatrix, 0, angleDegrees, 0, 1, 0);
+    //Matrix.setRotateM(modelMatrix, 0, angleDegrees, 0, 1, 0);
+    Matrix.setRotateM(modelMatrix, 0, mAngle, 0, 1, 0);
+    //.setRotateEulerM(modelMatrix, 0, 1, 0, 0);
+    //Matrix.setRotateM(modelMatrix, 0, mAngle, 0, 0, -1.0f);
 
     // Set the camera position (View matrix)
     Matrix.setLookAtM(viewMatrix, 0,
-        // Camera position.
-        EYE_X, EYE_Y, EYE_Z,
-        // Point that the camera is looking at.
-        TARGET_X, TARGET_Y, TARGET_Z,
-        // The vector that defines which way is up.
-        UP_X, UP_Y, UP_Z);
+            // Camera position.
+            EYE_X, EYE_Y, EYE_Z,
+            // Point that the camera is looking at.
+            TARGET_X, TARGET_Y, TARGET_Z,
+            // The vector that defines which way is up.
+            UP_X, UP_Y, UP_Z);
 
     // Calculate the MVP matrix (model-view-projection) by multiplying the model, view, and
     // projection matrices together.
-    Matrix.multiplyMM(tmpMatrix, 0, viewMatrix, 0, modelMatrix, 0);  // V * M
+
+    Matrix.multiplyMM(tmpMatrix, 0, viewMatrix, 0, modelMatrix, 0);// V * M
     Matrix.multiplyMM(mvpMatrix, 0, projMatrix, 0, tmpMatrix, 0);  // P * V * M
 
     // objectToRender is volatile, so we capture it in a local variable.
@@ -164,5 +158,28 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     // the GL thread will notice it on the next frame.
     objectToRender = rawObject;
     Log.d(TAG, "Received raw object to render.");
+  }
+
+  public static int loadShader(int type, String shaderCode){
+
+    // create a vertex shader type (GLES20.GL_VERTEX_SHADER)
+    // or a fragment shader type (GLES20.GL_FRAGMENT_SHADER)
+    int shader = GLES20.glCreateShader(type);
+
+    // add the source code to the shader and compile it
+    GLES20.glShaderSource(shader, shaderCode);
+    GLES20.glCompileShader(shader);
+
+    return shader;
+  }
+
+  public volatile float mAngle;
+
+  public float getAngle() {
+    return mAngle;
+  }
+
+  public void setAngle(float angle) {
+    mAngle = angle;
   }
 }
