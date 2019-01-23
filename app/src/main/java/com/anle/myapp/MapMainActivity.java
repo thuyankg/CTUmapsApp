@@ -1079,7 +1079,7 @@ public class MapMainActivity extends AppCompatActivity implements OnMapReadyCall
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startActivity(intent);
+                //startActivity(intent);
                 Toast.makeText(MapMainActivity.this,"Back to Homepage...",Toast.LENGTH_LONG).show();
             }
         });
